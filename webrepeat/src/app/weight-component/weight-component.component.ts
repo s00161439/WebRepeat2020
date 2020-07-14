@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-weight-component',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeightComponentComponent implements OnInit {
 
-  constructor() { }
+  myForm: FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.myForm = this.fb.group({
+      name: '',
+      email: '',
+      age: '',
+      height: '',
+      weight: ''
+    })
+    this.myForm.valueChanges.subscribe(console.log)
   }
 
 }

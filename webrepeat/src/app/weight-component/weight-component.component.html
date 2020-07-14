@@ -1,1 +1,33 @@
-<p>weight-component works!</p>
+<form [formGroup]="myForm">
+
+    Value: {{ myForm.value | json }}
+
+    <hr>
+
+    <mat-form-field>
+        <label>Name</label>
+        <input matInput  formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <label>Email</label>
+        <input matInput  formControlName="email" type="email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <label>Date of Birth</label>
+        <input matInput  formControlName="age" type="date">
+    </mat-form-field>
+
+    <mat-form-field>
+        <label>Height</label>
+        <input matInput formControlName="height">
+    </mat-form-field>
+
+    <mat-form-field>
+        <label>Weight</label>
+        <input matInput formControlName="weight" type="number">
+    </mat-form-field>
+
+<button class="btn btn-primary" type="submit">Submit form</button>
+</form>
