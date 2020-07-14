@@ -1,33 +1,34 @@
-<form [formGroup]="myForm">
+<form [formGroup]="myForm" class="container-fluid">
 
     Value: {{ myForm.value | json }}
 
     <hr>
-
-    <mat-form-field>
+<div class="container-fluid">
+   <div class="form-group row">
         <label>Name</label>
-        <input matInput  formControlName="name">
-    </mat-form-field>
+        <input formControlName="name">
+   </div>
 
-    <mat-form-field>
+    <div class="form-group row">
         <label>Email</label>
-        <input matInput  formControlName="email" type="email">
-    </mat-form-field>
+        <input formControlName="email" type="email">
+    </div>
 
-    <mat-form-field>
+    <div class="form-group row">
         <label>Date of Birth</label>
-        <input matInput  formControlName="age" type="date">
-    </mat-form-field>
+        <input  formControlName="age" type="date">
+    </div>
 
-    <mat-form-field>
+    <div class="form-group row">
         <label>Height</label>
-        <input matInput formControlName="height">
-    </mat-form-field>
+        <input  formControlName="height">
+    </div>
 
-    <mat-form-field>
+    <div class="form-group row">
         <label>Weight</label>
-        <input matInput formControlName="weight" type="number">
-    </mat-form-field>
-
+        <br>
+        <input formControlName="weight" type="number">
+    </div>
+</div>
 <button class="btn btn-primary" type="submit">Submit form</button>
 </form>
