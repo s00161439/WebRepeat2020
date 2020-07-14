@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WeightComponentComponent } from './weight-component/weight-component.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  {path: 'userWeight', component: WeightComponentComponent}
+  {path: 'userWeight', component: WeightComponentComponent},
+  {path: 'userlogin', component: LoginComponent}
 
 ];
 
