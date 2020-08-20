@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './authentication.service';
+import { User } from './models/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,6 +11,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'webrepeat';
-  
+  currentUser : User;
+  constructor(
+    private router: Router,
+   private authenticationService: AuthenticationService
+    ) {
+        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    }
+
+    logout() {
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
+    }
  
 }

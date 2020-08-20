@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,11 +16,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoginComponent } from './login/login.component';
+import { JwtInterceptor } from './helpers/jwt.interseptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { fakeBackendProvider } from './helpers/fake-backend';
 @NgModule({
   declarations: [
     AppComponent,
     WeightComponentComponent,
     LoginComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -29,9 +35,14 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatChipsModule
+    MatChipsModule, 
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    
+
+    // provider used to create fake backend
+    fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

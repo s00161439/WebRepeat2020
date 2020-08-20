@@ -1,52 +1,64 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
+import { AuthenticationService } from 'src/app/authentication.service';
+
+@Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
- myForm: FormGroup;
-  constructor(private fb:FormBuilder) { }
+    loginForm: FormGroup;
+    loading = false;
+    submitted = false;
+    returnUrl: string;
 
-  ngOnInit() {
-   
-   this.myForm = this.fb.group({
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')
-      ]],
-      age: [null, [
-        Validators.required,
-        Validators.minLength(2), 
-        Validators.min(18), 
-        Validators.max(65)
-      ]],
-      agree: [false, [
-        Validators.requiredTrue
-      ]]
-    });
-  }
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private router: Router,
+        private authenticationService: AuthenticationService,
+     
+    ) {
+        // redirect to home if already logged in
+        if (this.authenticationService.currentUserValue) { 
+            this.router.navigate(['/']);
+        }
+    }
 
-  get email() {
-    return this.myForm.get('email');
-  }
+    ngOnInit() {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
+        });
 
-  get password() {
-    return this.myForm.get('password');
-  }
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
 
-  get age() {
-    return this.myForm.get('age');
-  }
+    // convenience getter for easy access to form fields
+    get f() { return this.loginForm.controls; }
 
-  get agree() {
-    return this.myForm.get('agree');
-  }
+    onSubmit() {
+        this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.f.username.value, this.f.password.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                
+                  this.loading = false;
+              });
+                
+              
+            }
 }
 
