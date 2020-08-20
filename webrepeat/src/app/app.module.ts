@@ -20,12 +20,16 @@ import { JwtInterceptor } from './helpers/jwt.interseptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
     WeightComponentComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    LogoutComponent
   
   ],
   imports: [
