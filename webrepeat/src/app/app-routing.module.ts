@@ -11,12 +11,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent , canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
-    { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },
-    { path: '',  redirectTo: '/dashboard', pathMatch: 'full' }, // catch all route
+    { path: '**', redirectTo: '/home', pathMatch: 'full' },
+    { path: '',  redirectTo: '/home', pathMatch: 'full' }, // catch all route
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

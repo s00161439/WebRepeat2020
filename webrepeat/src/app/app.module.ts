@@ -22,6 +22,7 @@ import { fakeBackendProvider } from './helpers/fake-backend';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './guards/auth.guards';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,7 @@ import { LogoutComponent } from './logout/logout.component';
     HttpClientModule
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    
+    AuthGuard,
 
     // provider used to create fake backend
     fakeBackendProvider],

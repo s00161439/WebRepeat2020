@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     private handleLoginSuccess() {
       this.processing = false;
       this.error  = false;
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/home']);
     }
   
     private handleLoginError() {
