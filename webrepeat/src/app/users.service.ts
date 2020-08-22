@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from './models/user';
+import { first } from 'rxjs/internal/operators/first';
 
 
 @Injectable({
@@ -30,4 +31,5 @@ update(user: User) {
 delete(id: number) {
     return this.http.delete(`${config.apiUrl}/users/${id}`);
 }
+
 }
