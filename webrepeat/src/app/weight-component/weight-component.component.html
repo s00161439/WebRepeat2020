@@ -4,24 +4,10 @@
 
     <hr>
 <div class="container-fluid">
-   <div class="form-group row">
-        <label>Name</label>
-        <input formControlName="name">
-   </div>
-
+   
     <div class="form-group row">
-        <label>Email</label>
-        <input formControlName="email" type="email">
-    </div>
-
-    <div class="form-group row">
-        <label>Date of Birth</label>
-        <input  formControlName="age" type="date">
-    </div>
-
-    <div class="form-group row">
-        <label>Height</label>
-        <input  formControlName="height">
+        <label>Goals</label>
+        <input  formControlName="Goals">
     </div>
 
     <div class="form-group row">
@@ -31,4 +17,5 @@
     </div>
 </div>
 <button class="btn btn-primary" type="submit">Submit form</button>
+<p>{{weightcomponent.value['Goals']}}  {{weightcomponent.value['Weight']}}</p>
 </form>
