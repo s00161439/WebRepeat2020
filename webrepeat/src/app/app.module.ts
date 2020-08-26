@@ -11,22 +11,19 @@ import { WeightComponentComponent } from './weight-component/weight-component.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { LoginComponent } from './login/login.component';
-import { JwtInterceptor } from './helpers/jwt.interseptor';
+
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { fakeBackendProvider } from './helpers/fake-backend';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { LogoutComponent } from './logout/logout.component';
-import { AuthGuard } from './guards/auth.guards';
+
+import { CallbackComponent } from './callback/callback.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     WeightComponentComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomeComponent,
-    LogoutComponent
+  
+
+    CallbackComponent
   
   ],
   imports: [
@@ -37,11 +34,10 @@ import { AuthGuard } from './guards/auth.guards';
     
     HttpClientModule
   ],
-  providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    AuthGuard,
+
 
     // provider used to create fake backend
-    fakeBackendProvider],
+   
   bootstrap: [AppComponent]
 })
 export class AppModule { }

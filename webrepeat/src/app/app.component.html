@@ -1,14 +1,14 @@
 
 <div class="container-fluid" >
-  <img src="/src/app/images/fitnessbackground.jpg">
 <h1>WELCOME TO YOUR HEALTHY JOURNEY APPLICATION</h1>
 
 <div class="container-fluid">
 <nav class="navbar navbar-light bg-light">
-  <a routerLink="/weight">Your Details</a>
+  <a *ngIf="authService.isLoggedIn" routerLinkActive="active" routerLink="/weight">Your Details</a>
   <div>
-  <a routerLink="/login">Login</a>
+    <a *ngIf="!authService.isLoggedIn" (click)="authService.login()">Log In</a>
   </div>
+  <a (click)="authService.logout()" *ngIf="authService.isLoggedIn">Log Out</a>
 </nav>
 </div>
 </div>

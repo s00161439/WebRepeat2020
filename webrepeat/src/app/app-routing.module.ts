@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WeightComponentComponent } from './weight-component/weight-component.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './guards/auth.guards';
-import {HomeComponent} from './home/home.component';
+import {CallbackComponent} from './callback/callback.component';
+import {AuthGuard} from './auth/auth.guard';
 
-import { RegisterComponent } from './register/register.component';
+
+
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  {path: 'weight', component: WeightComponentComponent},
-  { path: 'home', component: HomeComponent , canActivate: [AuthGuard]}
+ 
+ {path: 'callback', component: CallbackComponent},
+  {path: 'weight', component: WeightComponentComponent,  canActivate: [AuthGuard]},
+  
 
  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}
