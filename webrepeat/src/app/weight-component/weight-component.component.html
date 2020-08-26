@@ -1,21 +1,39 @@
-<form [formGroup]="myForm" class="container-fluid">
-
-    Value: {{ myForm.value | json }}
-
-    <hr>
-<div class="container-fluid">
-   
-    <div class="form-group row">
-        <label>Goals</label>
-        <input  formControlName="Goals">
+<div class="container">
+<h2>Add some goals </h2>
+  
+    <form [formGroup]="goals" #formDir="ngForm">
+  
+     
+  
+      
+          <div class="form-group">
+  
+            <label for="name">Goal</label>
+            <input id="name" class="form-control"
+                  formControlName="name" required >
+             
+            </div>
+         
+  
+          <div class="form-group">
+            <label for="time">how long do you give yourself to complete this goal</label>
+            <input id="time" class="form-control"
+                formControlName="time"  >
+          </div>
+     
+     
+        
+        <button type="submit" class="btn btn-default"
+               [disabled]="goals.invalid">Submit</button>
+        <button type="button" class="btn btn-default"
+               (click)="formDir.resetForm({})">Reset</button>
+    </form>
+    
+  
+    <div class="Submit" *ngIf="formDir.submitted">
+      <p>You've submitted your goals, {{ goals.value.name }}!</p>
+      <button (click)="formDir.resetForm({})">Add new goal</button>
     </div>
 
-    <div class="form-group row">
-        <label>Weight</label>
-        <br>
-        <input formControlName="weight" type="number">
-    </div>
-</div>
-<button class="btn btn-primary" type="submit">Submit form</button>
-<p>{{weightcomponent.value['Goals']}}  {{weightcomponent.value['Weight']}}</p>
-</form>
+    <p>{{goal.value['name']}} {{goal.value['time']}}</p>
+  </div>

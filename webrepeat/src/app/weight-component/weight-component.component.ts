@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {FormBuilder,FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder,FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-weight-component',
@@ -9,16 +9,24 @@ import {FormBuilder,FormControl, FormGroup} from '@angular/forms';
 })
 export class WeightComponentComponent implements OnInit {
 
-  myForm: FormGroup;
+  goals: FormGroup;
   firstnamecontrol = new FormControl;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      goals: [''],
-      weight: ['']
+    this.goals = this.fb.group({
+      name: new FormControl([Validators.required]
+      ),
+      time: new FormControl()
     })
-    this.myForm.valueChanges.subscribe(console.log)
+
   }
+     
+  get name() { return this.goals.get('name'); }
+  get time(){return this.goals.get ('time'); }
+  onSubmit() {
+    console.log(this.goals.value);
+  }
+
 
 }
