@@ -15,7 +15,7 @@ export class WeightComponentComponent implements OnInit {
 
   ngOnInit() {
     this.goals = this.fb.group({
-      name: new FormControl([Validators.required]
+      name: new FormControl(
       ),
       time: new FormControl()
     })
